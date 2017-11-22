@@ -30,7 +30,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 
 $factory->define(App\Event::class, function (Faker $faker){
     return [
-        'name' => $faker->name,
+        'name' => $faker->company,
         'altos' => random_int(50,5000),
         'medios' => random_int(50,5000),
         'vip' => random_int(50,5000),

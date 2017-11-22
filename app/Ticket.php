@@ -8,9 +8,9 @@ class Ticket extends Model
 {
     protected $guarded = [];
     public function user(){
-        return $this->belongsTo(Users::class);
+        return $this->belongsTo(User::class);
     }
-    public function evet(){
-        return $this->belongsTo(Events::class);
+    public function event(){
+        return $this->belongsTo(Event::class);
     }
 }

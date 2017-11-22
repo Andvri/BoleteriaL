@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 </head>
 <body>
     <div id="app">
@@ -37,8 +39,8 @@
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" role="button" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <img src="{{ Auth::user()->avatar }}" width="30" height="30" class="d-inline-block align-top" alt="">{{ Auth::user()->role }} {{ Auth::user()->name }}  <span class="caret"></span></a>
-                                
+                                <a class="nav-link dropdown-toggle" role="button" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <img src="{{ Auth::user()->avatar }}" width="30" height="30" class="d-inline-block align-top" alt=""> {{ Auth::user()->access }}: {{ Auth::user()->name }}  <span class="caret"></span></a>
+                                 
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
@@ -47,6 +49,10 @@
                                     </form>
                                 </div>
                             </li>
+                            <li class="nav-item"> <a href="/aTicket" class="btn btn-outline-success" > Agregar Ticket </a> </li>
+                            @if(Auth::user()->access == "Administrador")
+                            <li class="nav-item"> <a href="/aEvent" class="btn btn-outline-primary" > Agregar Evento </a> </li>
+                            @endif
                         @endguest
                     </ul>
                 </div>

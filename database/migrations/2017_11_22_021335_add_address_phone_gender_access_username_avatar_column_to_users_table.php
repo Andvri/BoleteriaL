@@ -20,7 +20,7 @@ class AddAddressPhoneGenderAccessUsernameAvatarColumnToUsersTable extends Migrat
             
             $table->text('phone');
             $table->enum('gender',['M','F']);
-            $table->enum('access',['user','admin'])->default('user');
+            $table->enum('access',['Usuario','Administrador'])->default('Usuario');
         });
     }
 
