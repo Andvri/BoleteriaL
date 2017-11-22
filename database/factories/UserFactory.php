@@ -38,3 +38,11 @@ $factory->define(App\Event::class, function (Faker $faker){
         'date' => $faker->dateTimeThisMonth
     ];
 });
+
+$factory->define(App\Ticket::class, function (Faker $faker){
+    $locations = ["Alto", "Medio", "Vip", "Platinium"];
+    return [
+        'serial' => $faker->ipv6,
+        'location' => $locations[random_int(0,3)]
+    ];
+});
