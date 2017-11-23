@@ -1,4 +1,12 @@
 @extends('layouts.app')
+@section('title')
+    Bienvenido 
+    @guest
+     al Sistema registro de Boletos
+    @else
+     {{Auth::user()->name}}  al Sistema registro de Boletos y Eventos
+    @endguest
+@endsection
 @section('content')
 <div class="container">
     @guest
