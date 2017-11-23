@@ -3,6 +3,9 @@
 <div class="container">
     <form class="form" method="post" action="/aEvent/create">
         {{ csrf_field() }}
+            @if($errors->any())
+            Existen Errores
+            @endif
         <div class="form-group">
             <label for="exampleInputEmail1">Nombre del Evento</label>
             <input type="text" placeholder="Ej: Salon del Manga" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name" placeholder="Enter email">

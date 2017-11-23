@@ -9,7 +9,7 @@ use App\User;
 class IndexController extends Controller
 {
     function index() {
-        $events = Event::all()->orderBy('created_at')->desc();
+        $events = Event::all();
         return view('welcome', ["events" => $events]);
     }
 
@@ -61,6 +61,14 @@ class IndexController extends Controller
 
     function createEvent(Request $request){
         //$this->validate()
+        $this->validate($request, [
+            "name" => "required",
+            "vip" => "required",
+            "platinium" => "required",
+            "altos" => "required",
+            "medios" => "required",
+            "date" => "required"
+        ]);
         $nEvent = Event::create([
             "name" => $request->name,
             "vip" => $request->vip,

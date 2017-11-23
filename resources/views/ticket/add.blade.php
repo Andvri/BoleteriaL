@@ -3,6 +3,9 @@
 <div class="container">
 <form class="form" method="post" action="/aTicket/create">
  {{ csrf_field() }}
+ @if($errors->any())
+            Existen Errores
+  @endif
  <input type="hidden" value="{{ Auth::user()->id}}" name="user_id"/>
    <div class="form-group">
     <label for="exampleInputEmail1">Serial</label>
