@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Ticket;
 use App\User;
+use App\Http\Requests\EventRequest;
+use App\Http\Requests\TicketRequest;
 class IndexController extends Controller
 {
     function index() {
@@ -27,11 +29,23 @@ class IndexController extends Controller
     }
 
     function eTicket($id){
+        $events = Event::all();
         $ticket = Ticket::find($id);
-        return view('ticket.edit');
+        return view('ticket.edit', ['element' => $ticket, "events" => $events]);
+    }
+    function eTicketpost($id, TicketRequest $request){
+
+        $eTicket = Ticket::find($id);
+
+        $eTicket->location = $request->location;
+        $eTicket->serial = $request->serial;
+        $eTicket->event_id = $request->event_id;
+        $eTicket->user_id = $request->user_id;
+        $eTicket->save();
+        return redirect('/');
     }
 
-    function createTicket(Request $request){
+    function createTicket(TicketRequest $request){
         //dd($request->event_id);
         $nTicket =Ticket::create([
             "location" => $request->location,
@@ -54,21 +68,24 @@ class IndexController extends Controller
     }
 
     function eEvent($id){
-        dd(User::find(1));
-        $ticket = Ticket::find($id);
-        return view('event.edit');
+        $event = Event::find($id);
+        return view('event.edit', ['element' => $event]);
+    }
+    function eEventpost($id, EventRequest $request){
+        $eEvent = Event::find($id);
+        $eEvent->name = $request->name; 
+        $eEvent->vip = $request->vip;
+        $eEvent->platinium =$request->platinium;
+        $eEvent->altos = $request->altos;
+        $eEvent->medios = $request->medios;
+        $eEvent->date = $request->date;
+        $eEvent->save();
+        return redirect('/');
     }
 
-    function createEvent(Request $request){
+    function createEvent(EventRequest $request){
         //$this->validate()
-        $this->validate($request, [
-            "name" => "required",
-            "vip" => "required",
-            "platinium" => "required",
-            "altos" => "required",
-            "medios" => "required",
-            "date" => "required"
-        ]);
+
         $nEvent = Event::create([
             "name" => $request->name,
             "vip" => $request->vip,

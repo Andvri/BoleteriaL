@@ -19,15 +19,17 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/aTicket', "IndexController@aTicket");
     Route::post('/aTicket/create', "IndexController@createTicket");
     Route::get('/eTicket/{id}', "IndexController@eTicket");
+    Route::post('/eTicket/{id}', "IndexController@eTicketpost");
 });
 
 
 //Events Routes
 Route::group(['middleware' => ['auth',AccessRole::class]], function(){
-    Route::get('/dEvent/{id}', "IndexController@dEvent")->middleware('auth');
-    Route::get('/aEvent', "IndexController@aEvent")->middleware('auth');
-    Route::post('/aEvent/create', "IndexController@createEvent")->middleware('auth');
-    Route::get('/eEvent/{id}', "IndexController@eEvent")->middleware('auth');
+    Route::get('/dEvent/{id}', "IndexController@dEvent");
+    Route::get('/aEvent', "IndexController@aEvent");
+    Route::post('/aEvent/create', "IndexController@createEvent");
+    Route::get('/eEvent/{id}', "IndexController@eEvent");
+    Route::post('/eEvent/{id}', "IndexController@eEventpost");
 });
 
 //Auth Routes

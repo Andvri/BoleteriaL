@@ -6,14 +6,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
- @if($errors->any())
-            Existen Errores
-  @endif
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
                             <div class="col-md-6">
@@ -27,7 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
                             <label for="address" class="col-md-4 control-label">Direccion</label>
 
                             <div class="col-md-6">
@@ -41,7 +38,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('username') ? ' has-danger' : '' }}">
                             <label for="username" class="col-md-4 control-label">Nombre de Usuario</label>
 
                             <div class="col-md-6">
@@ -55,7 +52,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('gender') ? ' has-danger' : '' }}">
                             <label for="gender" class="col-md-4 control-label">Genero</label>
                             <div class="col-md-6">
                                 <select name="gender" value="{{ old('gender') }}" class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
@@ -65,7 +62,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                             <label for="email" class="col-md-4 control-label">Correo Electronico</label>
 
                             <div class="col-md-6">
@@ -78,7 +75,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
                             <label for="phone" class="col-md-4 control-label">Telefono</label>
 
                             <div class="col-md-6">
@@ -91,7 +88,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
