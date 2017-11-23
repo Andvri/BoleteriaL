@@ -39,6 +39,7 @@
                     <th>Serial</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
+                    <th>Ver</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,7 @@
                     <td>{{$ticket->serial}}</td>
                     <td><a href="/eTicket/{{$ticket->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a></td>
                     <td><a href="/dTicket/{{$ticket->id}}"><i class="fa fa-trash" aria-hidden="true"></i> </a></td>
+                    <td><a href="/vTicket/{{$ticket->id}}"><i class="fa fa-expand" aria-hidden="true"></i></a></td> 
                 </tr>
             @endforeach
         </tbody>
@@ -59,6 +61,46 @@
     </div>
   </div>
  @if(Auth::user()->access == "Administrador")
+     <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Todos los Tickets
+        </a>
+      </h5>
+    </div>
+
+        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="card-block">
+        <table class="table">
+            <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre del Evento</th>
+                    <th>Serial</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                    <th>Ver</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($tickets as $ticket)
+                <tr>
+                    <th scope="row">{{$ticket->id}}</th>
+                    <td>{{$ticket->event->name}}</td>
+                    <td>{{$ticket->serial}}</td>
+                    <td><a href="/eTicket/{{$ticket->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a></td>
+                    <td><a href="/dTicket/{{$ticket->id}}"><i class="fa fa-trash" aria-hidden="true"></i> </a></td>
+                    <td><a href="/vTicket/{{$ticket->id}}"><i class="fa fa-expand" aria-hidden="true"></i></a></td> 
+                </tr>
+            @endforeach
+        </tbody>
+        </table>
+                
+      
+      </div>
+    </div>
+  </div>
     <div class="card">
         <div class="card-header" role="tab" id="headingTwo">
             <h5 class="mb-0">
@@ -78,6 +120,7 @@
                                 <th>Fecha</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
+                                <th>Ver</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,7 +132,7 @@
                                 <td>{{$event->date}}</td>
                                 <td><a href="/eEvent/{{$event->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a></td>
                                 <td><a href="/dEvent/{{$event->id}}"><i class="fa fa-trash" aria-hidden="true"></i> </a></td>
-                                             
+                                <td><a href="/vEvent/{{$event->id}}"><i class="fa fa-expand" aria-hidden="true"></i></a></td>              
                         </tr>
                         @endforeach
                     </tbody>

@@ -17,6 +17,7 @@ Route::get('/', "IndexController@index");
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/dTicket/{id}', "IndexController@dTicket");
     Route::get('/aTicket', "IndexController@aTicket");
+    Route::get('/vTicket/{id}', "IndexController@vTicket");
     Route::post('/aTicket/create', "IndexController@createTicket");
     Route::get('/eTicket/{id}', "IndexController@eTicket");
     Route::post('/eTicket/{id}', "IndexController@eTicketpost");
@@ -26,6 +27,7 @@ Route::group(['middleware' => ['auth']], function(){
 //Events Routes
 Route::group(['middleware' => ['auth',AccessRole::class]], function(){
     Route::get('/dEvent/{id}', "IndexController@dEvent");
+    Route::get('/vEvent/{id}', "IndexController@vEvent");
     Route::get('/aEvent', "IndexController@aEvent");
     Route::post('/aEvent/create', "IndexController@createEvent");
     Route::get('/eEvent/{id}', "IndexController@eEvent");

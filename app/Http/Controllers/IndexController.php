@@ -12,7 +12,8 @@ class IndexController extends Controller
 {
     function index() {
         $events = Event::all();
-        return view('welcome', ["events" => $events]);
+        $tickets = Ticket::all();
+        return view('welcome', ["events" => $events, "tickets" => $tickets]);
     }
 
     //Tickets Routes
@@ -28,6 +29,11 @@ class IndexController extends Controller
         return view('ticket.add', ["events" => $events]);
     }
 
+    function vTicket($id){
+
+        $ticket = Ticket::find($id);
+        return view('ticket.view', ['ticket' => $ticket]);
+    }
     function eTicket($id){
         $events = Event::all();
         $ticket = Ticket::find($id);
@@ -65,6 +71,10 @@ class IndexController extends Controller
     function aEvent(){
         $events = Event::all();
         return view('event.add');
+    }
+    function vEvent($id){
+        $event = Event::find($id);
+        return view('event.view', ['event' => $event]);
     }
 
     function eEvent($id){
