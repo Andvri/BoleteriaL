@@ -31,7 +31,8 @@
 
     <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
       <div class="card-block">
-        <table class="table">
+        @if (count(Auth::user()->tickets) > 0)
+            <table class="table">
             <thead class="thead-default">
                 <tr>
                     <th>#</th>
@@ -55,7 +56,10 @@
             @endforeach
         </tbody>
         </table>
-                
+        @else
+           <h2>Ud no tiene Tickets Registrados</h2>
+        @endif
+                      
       
       </div>
     </div>
@@ -72,6 +76,7 @@
 
         <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
       <div class="card-block">
+    @if (count($tickets) > 0)
         <table class="table">
             <thead class="thead-default">
                 <tr>
@@ -96,7 +101,9 @@
             @endforeach
         </tbody>
         </table>
-                
+        @else
+           <h2>No existen Tickets Registrado</h2>
+        @endif        
       
       </div>
     </div>
@@ -112,6 +119,7 @@
 
         <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="card-block">
+             @if (count($events) > 0)
                     <table class="table">
                         <thead class="thead-default">
                             <tr>
@@ -137,7 +145,9 @@
                         @endforeach
                     </tbody>
                     </table>
-            
+                @else
+                    <h2>No existen Eventos Registrado</h2>
+                @endif    
             </div>
         </div>
     </div>

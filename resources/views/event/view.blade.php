@@ -32,6 +32,7 @@
     </tbody>
 </table>
 <h2>Tickets Registrados para este evento</h2>
+@if(count($event->tickets) > 0)
 <table class="table">
             <thead class="thead-default">
                 <tr>
@@ -58,5 +59,10 @@
             @endforeach
         </tbody>
         </table>
+        
+        @else
+           <h3>No existen tickets registrados para este evento</h3>
+        @endif
+                  
 </div>                            
 @endsection

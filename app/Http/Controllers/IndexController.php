@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Event;
 use App\Ticket;
 use App\User;
+use Auth;
 use App\Http\Requests\EventRequest;
 use App\Http\Requests\TicketRequest;
 class IndexController extends Controller
@@ -20,7 +21,11 @@ class IndexController extends Controller
 
     function dTicket($id){
         $ticket = Ticket::find($id);
-        Ticket::destroy($id);
+        $user= Auth::user();
+        if(($ticket->user_id == $user->id) ||  ($user->access == "Administrador")){
+            Ticket::destroy($id);
+        }
+
         return redirect('/');
     }
 
@@ -32,12 +37,25 @@ class IndexController extends Controller
     function vTicket($id){
 
         $ticket = Ticket::find($id);
-        return view('ticket.view', ['ticket' => $ticket]);
+        $user= Auth::user();
+        if(($ticket->user_id == $user->id) ||  ($user->access == "Administrador")){
+            return view('ticket.view', ['ticket' => $ticket]);
+        }
+        else{
+            return redirect('/');
+        }
     }
     function eTicket($id){
         $events = Event::all();
         $ticket = Ticket::find($id);
-        return view('ticket.edit', ['element' => $ticket, "events" => $events]);
+        $user= Auth::user();
+        if(($ticket->user_id == $user->id) ||  ($user->access == "Administrador")){
+            return view('ticket.edit', ['element' => $ticket, "events" => $events]);
+        }
+        else{
+            return redirect('/');
+        }
+       
     }
     function eTicketpost($id, TicketRequest $request){
 
